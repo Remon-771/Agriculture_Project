@@ -1,0 +1,26 @@
+# Environment files
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+# JavaScript dependencies and build output
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+
+# Laravel dependencies and runtime files
+**/vendor/
+**/storage/logs/*
+**/storage/framework/cache/*
+**/storage/framework/sessions/*
+**/storage/framework/views/*
+**/storage/framework/testing/*
+**/bootstrap/cache/*
+
+# Local database and editor/system files
+**/database/*.sqlite
+.DS_Store
+Thumbs.db
+.vscode/
