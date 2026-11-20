@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Leaf, Phone, ArrowRight, ChevronLeft, ShieldCheck, Mail, Rocket, RotateCcw, Upload, X, Lock, Eye, EyeOff } from 'lucide-react';
 import { authService, DEMO_CREDENTIALS, farmerService } from '@/services';
+import { withBasePath } from '@/utils';
 import type { BdLocationOption } from '@/services/bdLocations';
 import { getDistrictsByDivision, getUpazilasByDistrictId } from '@/services/bdLocations';
 
@@ -122,7 +123,7 @@ export default function FarmerLoginPage() {
     setLoading(false);
 
     if (result.success) {
-      window.location.href = '/dashboard/farmer';
+      window.location.href = withBasePath('/dashboard/farmer');
       return;
     }
 
@@ -162,7 +163,7 @@ export default function FarmerLoginPage() {
     setLoading(false);
     if (res.success) {
       setStep('success');
-      setTimeout(() => { window.location.href = '/dashboard/farmer'; }, 1200);
+      setTimeout(() => { window.location.href = withBasePath('/dashboard/farmer'); }, 1200);
     } else {
       setError(res.message || 'Invalid farmer email or password.');
     }

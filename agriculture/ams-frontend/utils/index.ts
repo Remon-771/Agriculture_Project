@@ -5,6 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function withBasePath(path: string): string {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
 export function formatBDT(amount: number): string {
   return `৳${amount.toLocaleString('en-BD')}`;
 }

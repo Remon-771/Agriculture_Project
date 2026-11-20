@@ -1,16 +1,14 @@
+'use client';
+
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/landing/Navbar';
 import { Footer, ProductsSection } from '@/components/landing/Sections';
 
-type AgricultureProductsPageProps = {
-  searchParams?: {
-    category?: string;
-    group?: string;
-  };
-};
-
-export default function AgricultureProductsPage({ searchParams }: AgricultureProductsPageProps) {
-  const category = searchParams?.category;
-  const isAgricultureGroup = searchParams?.group === 'agriculture';
+function AgricultureProductsContent() {
+  const searchParams = useSearchParams();
+  const category = searchParams?.get('category') || undefined;
+  const isAgricultureGroup = searchParams?.get('group') === 'agriculture';
   const heading = category || (isAgricultureGroup ? 'Agriculture Products' : 'Agriculture Product');
 
   return (
@@ -43,7 +41,12 @@ export default function AgricultureProductsPage({ searchParams }: AgriculturePro
   );
 }
 
-
-
+export default function AgricultureProductsPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-gray-50" />}>
+      <AgricultureProductsContent />
+    </Suspense>
+  );
+}
 
 

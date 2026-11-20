@@ -6,7 +6,7 @@ import {
   Leaf, Bell, Search, Menu, X, LogOut, ChevronDown,
   type LucideIcon,
 } from 'lucide-react';
-import { cn, getInitials } from '@/utils';
+import { cn, getInitials, withBasePath } from '@/utils';
 import { DASHBOARD_NOTIFICATION_ROUTES, DASHBOARD_PROFILE_ROUTES } from '@/constants';
 import { authService, notificationService } from '@/services';
 import type { ManagedUserRole } from '@/types';
@@ -52,7 +52,7 @@ export default function DashboardShell({
     authService.logout(role as ManagedUserRole);
     setUserMenuOpen(false);
     setSidebarOpen(false);
-    window.location.href = loginHref;
+    window.location.href = withBasePath(loginHref);
   };
 
   const [subtitleLabel, subtitleValue] = userSubtitle.includes(':')
@@ -71,7 +71,7 @@ export default function DashboardShell({
     };
 
     if (!resolveSession()) {
-      window.location.href = loginHref;
+      window.location.href = withBasePath(loginHref);
       return;
     }
 
@@ -84,13 +84,13 @@ export default function DashboardShell({
         return;
       }
       if (!resolveSession()) {
-        window.location.href = loginHref;
+        window.location.href = withBasePath(loginHref);
       }
     };
 
     const handleUserSessionUpdated = () => {
       if (!resolveSession()) {
-        window.location.href = loginHref;
+        window.location.href = withBasePath(loginHref);
       }
     };
 

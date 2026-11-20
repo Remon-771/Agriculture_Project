@@ -19,6 +19,7 @@ import {
   Phone,
 } from 'lucide-react';
 import { authService, DEMO_CREDENTIALS } from '@/services';
+import { withBasePath } from '@/utils';
 import type { BdLocationOption } from '@/services/bdLocations';
 import { getDistrictsByDivision, getUpazilasByDistrictId } from '@/services/bdLocations';
 import { DASHBOARD_ROUTES } from '@/constants';
@@ -172,7 +173,7 @@ function AdminLoginContent() {
     setLoading(false);
 
     if (result.success && result.role) {
-      window.location.href = DASHBOARD_ROUTES[result.role];
+      window.location.href = withBasePath(DASHBOARD_ROUTES[result.role]);
       return;
     }
 
@@ -254,7 +255,7 @@ function AdminLoginContent() {
 
     setStep('success');
     setTimeout(() => {
-      window.location.href = DASHBOARD_ROUTES[result.role as DashboardAccessRole];
+      window.location.href = withBasePath(DASHBOARD_ROUTES[result.role as DashboardAccessRole]);
     }, 1200);
   };
 

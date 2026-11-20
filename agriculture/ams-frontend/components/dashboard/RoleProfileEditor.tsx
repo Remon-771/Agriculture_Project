@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { authService } from '@/services';
+import { withBasePath } from '@/utils';
 import { Card, SectionHeader } from '@/components/dashboard/DashboardComponents';
 import type { BdLocationOption } from '@/services/bdLocations';
 import { getDistrictsByDivision, getUpazilasByDistrictId } from '@/services/bdLocations';
@@ -260,7 +261,7 @@ export default function RoleProfileEditor({
     }
 
     const loginHref = user.role === 'farmer' ? '/auth/farmer-login' : '/auth/admin-login';
-    window.location.href = loginHref;
+    window.location.href = withBasePath(loginHref);
   };
 
   return (
